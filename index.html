@@ -2,7 +2,7 @@
 <html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=0.8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Vijis Durai R - Aspiring Software Developer Engineer</title>
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -25,6 +25,75 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
+        /* Responsive Base Styles */
+        @media (max-width: 768px) {
+            html {
+                font-size: 14px;
+            }
+            
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            #home {
+                padding-top: 6rem;
+                padding-bottom: 4rem;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .timeline-content {
+                width: 100% !important;
+                margin-bottom: 1.5rem;
+            }
+            
+            .project-card {
+                margin-bottom: 1.5rem;
+            }
+            
+            nav {
+                padding: 0.5rem 1rem;
+            }
+            
+            .btn {
+                padding: 0.75rem 1.25rem;
+                font-size: 0.9rem;
+            }
+            
+            .contact-form {
+                padding: 1.5rem;
+            }
+            
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            html {
+                font-size: 12px;
+            }
+            
+            section {
+                padding: 3rem 1rem !important;
+            }
+            
+            h1 {
+                font-size: 2rem !important;
+            }
+            
+            h2 {
+                font-size: 1.75rem !important;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
         :root {
             --primary-bg: #0a0a0f;
             --secondary-bg: #1a1a2e;
