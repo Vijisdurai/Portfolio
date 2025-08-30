@@ -25,15 +25,230 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
-        /* Responsive Base Styles */
-        @media (max-width: 768px) {
-            html {
-                font-size: 14px;
+        /* Base styles */
+        :root {
+            /* Layout */
+            --container-width: 1200px;
+            --container-padding: 1.5rem;
+            --section-padding: 4rem 0;
+            
+            /* Colors */
+            --primary-bg: #0a0a0f;
+            --secondary-bg: #1a1a2e;
+            --card-bg: #16213e;
+            --accent-purple: #7c3aed;
+            --accent-blue: #3b82f6;
+            --accent-cyan: #06b6d4;
+            --text-primary: #ffffff;
+            --text-secondary: #94a3b8;
+            --border-color: #334155;
+            
+            /* Typography */
+            --font-base: 1rem;
+            --font-scale: 1.25;
+            --h1: calc(var(--h2) * var(--font-scale));
+            --h2: calc(var(--h3) * var(--font-scale));
+            --h3: calc(var(--h4) * var(--font-scale));
+            --h4: calc(var(--h5) * var(--font-scale));
+            --h5: calc(var(--h6) * var(--font-scale));
+            --h6: var(--font-base);
+        }
+        
+        /* Reset and base styles */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            color: var(--text-primary);
+            background: var(--primary-bg);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Container and layout */
+        .container {
+            width: 100%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+        }
+        
+        section {
+            padding: var(--section-padding);
+            position: relative;
+            width: 100%;
+        }
+        
+        /* Grid system */
+        .grid {
+            display: grid;
+            gap: 1.5rem;
+            width: 100%;
+        }
+        
+        /* Responsive breakpoints */
+        @media (min-width: 1600px) {
+            :root {
+                --container-width: 1440px;
+                --container-padding: 3rem;
+                --section-padding: 6rem 0;
+            }
+        }
+        
+        /* Laptop/Desktop */
+        @media (min-width: 1024px) {
+            .grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+            .grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+            .grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+            .gap-8 { gap: 2rem; }
+        }
+        
+        /* Tablet */
+        @media (max-width: 1023px) {
+            :root {
+                --container-padding: 1.5rem;
+                --section-padding: 4rem 0;
+                --font-base: 0.9375rem;
             }
             
-            .container {
-                padding-left: 1rem;
-                padding-right: 1rem;
+            .grid-cols-2,
+            .grid-cols-3,
+            .grid-cols-4 {
+                grid-template-columns: repeat(2, minmax(250px, 1fr));
+            }
+        }
+        
+        /* Mobile */
+        @media (max-width: 767px) {
+            :root {
+                --container-padding: 1rem;
+                --section-padding: 3rem 1rem;
+                --font-base: 0.875rem;
+            }
+            
+            .grid-cols-2,
+            .grid-cols-3,
+            .grid-cols-4 {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            section {
+                padding: 2.5rem 1rem !important;
+            }
+            
+            h1 { font-size: 1.75rem !important; }
+            h2 { font-size: 1.5rem !important; }
+        }
+        
+        /* Reset and base styles */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            color: var(--text-primary);
+            background: var(--primary-bg);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+        }
+        
+        section {
+            padding: var(--section-padding);
+            position: relative;
+        }
+        
+        /* Grid system */
+        .grid {
+            display: grid;
+            gap: 1.5rem;
+            width: 100%;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+        }
+        
+        /* Utility classes */
+        .container {
+            width: 100%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+        }
+        
+        section {
+            padding: var(--section-padding);
+            position: relative;
+            width: 100%;
+        }
+        
+        /* Responsive Breakpoints */
+        /* Large Desktop */
+        @media (min-width: 1600px) {
+            :root {
+                --container-width: 1440px;
+                --container-padding: 3rem;
+                --section-padding: 6rem 0;
+            }
+        }
+        
+        /* Laptop/Desktop */
+        @media (min-width: 1024px) {
+            :root {
+                --container-padding: 2rem;
+                --section-padding: 5rem 0;
+            }
+            
+            .grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+            .grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+            .grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+            .gap-8 { gap: 2rem; }
+        }
+
+        /* Tablet */
+        @media (max-width: 1023px) {
+            :root {
+                --container-padding: 1.5rem;
+                --section-padding: 4rem 0;
+                --font-base: 0.9375rem; /* 15px */
+            }
+            
+            .grid-cols-2,
+            .grid-cols-3,
+            .grid-cols-4 {
+                grid-template-columns: repeat(2, minmax(250px, 1fr));
             }
             
             #home {
@@ -72,9 +287,23 @@
             }
         }
         
-        @media (max-width: 480px) {
-            html {
-                font-size: 12px;
+        /* Mobile */
+        @media (max-width: 767px) {
+            :root {
+                --container-padding: 1rem;
+                --section-padding: 3rem 1rem;
+                --font-base: 0.875rem; /* 14px */
+            }
+            
+            .grid-cols-2,
+            .grid-cols-3,
+            .grid-cols-4 {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            section {
+                padding: 2.5rem 0 !important;
             }
             
             section {
@@ -82,11 +311,11 @@
             }
             
             h1 {
-                font-size: 2rem !important;
+                font-size: 1.75rem !important;
             }
             
             h2 {
-                font-size: 1.75rem !important;
+                font-size: 1.5rem !important;
             }
             
             .skills-grid {
@@ -627,30 +856,30 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-6xl mx-auto">
-            <div class="floating mb-8">
-                <div class="w-48 h-48 mx-auto mb-8 rounded-full p-1 bg-gradient-to-r from-purple-500 to-blue-500">
+    <section id="home" class="flex items-center justify-center min-h-[calc(100vh-64px)] pt-36 pb-12 px-4 sm:px-6 lg:px-8">
+        <div class="text-center w-full max-w-4xl mx-auto">
+            <div class="floating mb-6">
+                <div class="w-36 h-36 mx-auto mb-6 rounded-full p-1 bg-gradient-to-r from-purple-500 to-blue-500">
                     <div class="w-full h-full rounded-full flex items-center justify-center bg-gray-900">
                         <img src="Gemini_Generated_Image_qp152gqp152gqp15.png"
-                             alt="Vijis Durai R" class="w-44 h-44 rounded-full object-cover">
+                             alt="Vijis Durai R" class="w-32 h-32 rounded-full object-cover">
                     </div>
                 </div>
             </div>
             
-            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-4">
+            <h1 class="text-2xl md:text-4xl lg:text-5xl font-bold mb-2">
                 Hi, I'm <span class="gradient-text">Vijis Durai R</span>
             </h1>
             
-            <h2 class="text-xl md:text-2xl lg:text-3xl text-gray-400 mb-6">
+            <h2 class="text-base md:text-lg lg:text-xl text-gray-400 mb-3">
                 Aspiring Software Developer Engineer | IT Student @ Saveetha Engineering College
             </h2>
             
-            <p class="text-lg md:text-xl text-gray-300 mb-12 max-w-3xl mx-auto">
+            <p class="text-sm md:text-base text-gray-300 mb-6 max-w-2xl mx-auto">
                 "Passionate about building impactful software and solving real-world problems with code."
             </p>
             
-            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
                 <a href="#projects" class="btn-primary">
                     <i data-lucide="code" class="w-5 h-5"></i>
                     View Projects
@@ -667,9 +896,9 @@
             </div>
 
             <!-- Stats with Glass Cards -->
-            <div class="flex flex-wrap justify-center items-stretch gap-6 max-w-6xl mx-auto">
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 max-w-6xl mx-auto px-4">
                 <!-- Problems Solved Card -->
-                <div class="flex-1 min-w-[200px] max-w-[250px] bg-gradient-to-br from-purple-500/20 via-purple-600/30 to-purple-700/25 backdrop-blur-lg p-6 rounded-2xl border border-purple-400/30 shadow-xl hover:shadow-2xl hover:shadow-purple-500/30 transition-all duration-300 fade-in flex flex-col items-center justify-center">
+                <div class="bg-gradient-to-br from-purple-500/20 via-purple-600/30 to-purple-700/25 backdrop-blur-lg p-4 rounded-2xl border border-purple-400/30 shadow-xl hover:shadow-2xl hover:shadow-purple-500/30 transition-all duration-300 fade-in flex flex-col items-center justify-center">
                     <div class="text-center">
                         <div class="text-4xl font-bold text-white mb-3">250+</div>
                         <p class="text-purple-100/90 text-sm font-medium">Problems Solved</p>
@@ -677,7 +906,7 @@
                 </div>
                 
                 <!-- Projects Card -->
-                <div class="flex-1 min-w-[200px] max-w-[250px] bg-gradient-to-br from-purple-500/20 via-purple-600/30 to-purple-700/25 backdrop-blur-lg p-6 rounded-2xl border border-purple-400/30 shadow-xl hover:shadow-2xl hover:shadow-purple-500/30 transition-all duration-300 fade-in flex flex-col items-center justify-center">
+                <div class="bg-gradient-to-br from-purple-500/20 via-purple-600/30 to-purple-700/25 backdrop-blur-lg p-4 rounded-2xl border border-purple-400/30 shadow-xl hover:shadow-2xl hover:shadow-purple-500/30 transition-all duration-300 fade-in flex flex-col items-center justify-center">
                     <div class="text-center">
                         <div class="text-4xl font-bold text-white mb-3"><span class="counter text-white" data-target="4">0</span>+</div>
                         <p class="text-purple-100/90 text-sm font-medium">Projects completed</p>
@@ -685,7 +914,7 @@
                 </div>
 
                 <!-- Events Card -->
-                <div class="flex-1 min-w-[200px] max-w-[250px] bg-gradient-to-br from-purple-500/20 via-purple-600/30 to-purple-700/25 backdrop-blur-lg p-6 rounded-2xl border border-purple-400/30 shadow-xl hover:shadow-2xl hover:shadow-purple-500/30 transition-all duration-300 fade-in flex flex-col items-center justify-center">
+                <div class="bg-gradient-to-br from-purple-500/20 via-purple-600/30 to-purple-700/25 backdrop-blur-lg p-4 rounded-2xl border border-purple-400/30 shadow-xl hover:shadow-2xl hover:shadow-purple-500/30 transition-all duration-300 fade-in flex flex-col items-center justify-center">
                     <div class="text-center">
                         <div class="text-4xl font-bold text-white mb-3"><span class="counter text-white" data-target="50">0</span>+</div>
                         <p class="text-purple-100/90 text-sm font-medium">Events Participated</p>
@@ -693,7 +922,7 @@
                 </div>
                 
                 <!-- Experience Card -->
-                <div class="flex-1 min-w-[200px] max-w-[250px] bg-gradient-to-br from-purple-500/20 via-purple-600/30 to-purple-700/25 backdrop-blur-lg p-6 rounded-2xl border border-purple-400/30 shadow-xl hover:shadow-2xl hover:shadow-purple-500/30 transition-all duration-300 fade-in flex flex-col items-center justify-center">
+                <div class="bg-gradient-to-br from-purple-500/20 via-purple-600/30 to-purple-700/25 backdrop-blur-lg p-4 rounded-2xl border border-purple-400/30 shadow-xl hover:shadow-2xl hover:shadow-purple-500/30 transition-all duration-300 fade-in flex flex-col items-center justify-center">
                     <div class="text-center">
                         <div class="text-4xl font-bold text-white mb-3">15+</div>
                         <p class="text-purple-100/90 text-sm font-medium">Years Experience</p>
@@ -701,7 +930,7 @@
                 </div>
 
                 <!-- Competition Wins Card -->
-                <div class="flex-1 min-w-[200px] max-w-[250px] bg-gradient-to-br from-purple-500/20 via-purple-600/30 to-purple-700/25 backdrop-blur-lg p-6 rounded-2xl border border-purple-400/30 shadow-xl hover:shadow-2xl hover:shadow-purple-500/30 transition-all duration-300 fade-in flex flex-col items-center justify-center">
+                <div class="bg-gradient-to-br from-purple-500/20 via-purple-600/30 to-purple-700/25 backdrop-blur-lg p-4 rounded-2xl border border-purple-400/30 shadow-xl hover:shadow-2xl hover:shadow-purple-500/30 transition-all duration-300 fade-in flex flex-col items-center justify-center">
                     <div class="text-center">
                         <div class="counter text-4xl font-bold text-white mb-3" data-target="5">0</div>
                         <p class="text-purple-100/90 text-sm font-medium">Competition Wins</p>
@@ -716,15 +945,15 @@
         
         <div class="container mx-auto max-w-screen-xl relative">
             <div class="text-center mb-16 fade-in">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">About Me</h2>
-                <p class="text-gray-400 text-lg md:text-xl">Get to know me better</p>
+                <h2 class="text-3xl md:text-4xl font-bold mb-3 gradient-text">About Me</h2>
+                <p class="text-gray-400 text-base md:text-lg">Get to know me better</p>
             </div>
             
             <div class="bg-gradient-to-br from-gray-900/30 to-gray-800/30 backdrop-blur-lg p-8 rounded-3xl border border-white/5 shadow-xl hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-500">
                 <!-- Who Am I Section -->
                 <div class="mb-12 fade-in">
-                    <h3 class="text-4xl md:text-5xl font-bold mb-6 text-white">Who Am I?</h3>
-                    <div class="space-y-6 text-lg md:text-xl text-white/80 leading-relaxed">
+                    <h3 class="text-2xl md:text-3xl font-bold mb-4 text-white">Who Am I?</h3>
+                    <div class="space-y-4 text-base md:text-lg text-white/80 leading-relaxed">
                         <p>
                             I'm a passionate IT student at Saveetha Engineering College with a strong foundation in software development. Currently pursuing my B.Tech, I'm working towards becoming a skilled Software Developer Engineer who can create innovative solutions with real-world impact.
                         </p>
@@ -739,7 +968,7 @@
 
                 <!-- Achievements Grid -->
                 <div class="fade-in">
-                    <h3 class="text-4xl md:text-5xl font-bold mb-6 text-white">My Profiles</h3>
+                    <h3 class="text-2xl md:text-3xl font-bold mb-6 text-white">My Profiles</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
                         <!-- LeetCode Card -->
                         <a href="https://leetcode.com/u/Vijis_Durai/" target="_blank" rel="noopener" class="bg-gradient-to-br from-purple-500/5 to-purple-700/5 backdrop-blur-lg p-6 rounded-2xl border border-white/5 hover:border-white/10 hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-500 group block">
@@ -748,7 +977,7 @@
                                     <i data-lucide="code-2" class="w-6 h-6 text-orange-400"></i>
                                 </div>
                                 <div>
-                                    <h4 class="text-xl font-semibold text-white mb-1">LeetCode</h4>
+                                    <h4 class="text-lg font-bold text-white mb-2">Why Choose Me?</h4>
                                     <p class="text-purple-100">250+ problems solved</p>
                                     <p class="text-purple-300/80 text-sm mt-2">View my profile <span class="text-orange-400 group-hover:text-white transition-colors">→</span></p>
                                 </div>
@@ -762,7 +991,7 @@
                                     <i data-lucide="github" class="w-6 h-6 text-gray-300"></i>
                                 </div>
                                 <div>
-                                    <h4 class="text-xl font-semibold text-white mb-1">GitHub</h4>
+                                    <h4 class="text-lg font-bold text-white mb-2">Skills</h4>
                                     <p class="text-gray-300">Open Source Contributions</p>
                                     <p class="text-gray-400/80 text-sm mt-2">View my projects and contributions <span class="text-blue-300 group-hover:text-white transition-colors">→</span></p>
                                 </div>
@@ -776,8 +1005,8 @@
                                     <i data-lucide="linkedin" class="w-6 h-6 text-blue-500"></i>
                                 </div>
                                 <div>
-                                    <h4 class="text-xl font-semibold text-white mb-1">LinkedIn</h4>
-                                    <p class="text-purple-200">Professional Network</p>
+                                    <h4 class="text-lg font-bold text-white mb-2">Professional Network</h4>
+                                    <p class="text-purple-200">Connect with me on LinkedIn</p>
                                     <p class="text-purple-300/80 text-sm mt-2">Connect with me <span class="text-purple-300 group-hover:text-white transition-colors">→</span></p>
                                 </div>
                             </div>
@@ -790,7 +1019,7 @@
                                     <i data-lucide="instagram" class="w-5 h-5 text-pink-400"></i>
                                 </a>
                                 <div>
-                                    <h4 class="text-xl font-semibold text-white mb-1">Coding Contests</h4>
+                                    <h4 class="text-lg font-bold text-white mb-2">Coding Contests</h4>
                                     <p class="text-purple-200">1600+ Rating</p>
                                     <p class="text-purple-300/80 text-sm mt-2">Consistent competitive programming performance</p>
                                 </div>
@@ -805,14 +1034,13 @@
         </div>
     </section>
 
-    <!-- My Quality Services Section -->
+    <!-- The Ways I Can Help You Section -->
     <section id="services" class="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-gradient-radial from-purple-900/20 to-gray-900">
         <div class="container mx-auto max-w-6xl">
             <div class="p-8 md:p-12 rounded-3xl bg-gradient-to-br from-gray-900/30 to-gray-800/30 backdrop-blur-lg border border-white/5 shadow-xl hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-500">
                 <div class="text-center mb-16 fade-in">
-                    <h2 class="text-4xl md:text-5xl font-bold mb-4 text-white">My Quality Services</h2>
-                    <p class="text-white/80 text-lg max-w-2xl mx-auto">
-                        I'm passionate about creating innovative solutions and building impactful software. 
+                    <h3 class="text-4xl md:text-5xl font-bold mb-6 text-white">The Ways I Can Help You</h3>
+                    <p class="text-white/80 text-lg max-w-3xl mx-auto">
                         Here's what I bring to the table as an aspiring Software Developer Engineer.
                     </p>
                 </div>
@@ -823,7 +1051,7 @@
                         <div class="w-16 h-16 rounded-lg bg-gradient-to-r from-purple-500 to-blue-500 flex items-center justify-center mb-6">
                             <i data-lucide="palette" class="w-8 h-8 text-white"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-4 text-white">Branding Design</h3>
+                        <h3 class="text-lg font-bold mb-4 text-white">Branding Design</h3>
                         <p class="text-white/80">Creating cohesive brand identities and visual systems that communicate your message effectively.</p>
                     </div>
 
@@ -832,7 +1060,7 @@
                         <div class="w-16 h-16 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center mb-6">
                             <i data-lucide="globe" class="w-8 h-8 text-white"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-4 text-white">Web Development</h3>
+                        <h3 class="text-lg font-bold mb-4 text-white">Web Development</h3>
                         <p class="text-white/80">Building responsive, modern websites and web applications using cutting-edge technologies.</p>
                     </div>
 
@@ -841,7 +1069,7 @@
                         <div class="w-16 h-16 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center mb-6">
                             <i data-lucide="brain" class="w-8 h-8 text-white"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-4 text-white">AI/ML Projects</h3>
+                        <h3 class="text-lg font-bold mb-4 text-white">AI/ML Projects</h3>
                         <p class="text-white/80">Developing intelligent solutions using machine learning and artificial intelligence technologies.</p>
                     </div>
 
@@ -850,14 +1078,14 @@
                         <div class="w-16 h-16 rounded-lg bg-gradient-to-r from-yellow-500 to-orange-500 flex items-center justify-center mb-6">
                             <i data-lucide="users" class="w-8 h-8 text-white"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-4 text-white">Leadership & Project Management</h3>
+                        <h3 class="text-lg font-bold mb-4 text-white">Leadership & Project Management</h3>
                         <p class="text-white/80">Driving technical events, projects, and teams with strong organizational skills, ensuring impactful execution and results.</p>
                     </div>
                 </div>
                 
                 <div class="mt-8 fade-in px-8">
                     <div class="max-w-4xl mx-auto">
-                        <blockquote class="text-xl leading-relaxed text-white/90 italic border-l-4 border-purple-500 pl-6 py-4">
+                        <blockquote class="text-lg leading-relaxed text-white/90 italic border-l-4 border-purple-500 pl-6 py-4">
                             <p class="mb-4">"I blend creativity with technical expertise to solve problems through branding design, web development, and AI/ML solutions."</p>
                             <p class="text-purple-300">My leadership in project management ensures successful execution of large-scale technical events and team initiatives. I focus on creating practical, efficient, and meaningful digital experiences.</p>
                         </blockquote>
@@ -1004,58 +1232,55 @@
     </section>
 
     <!-- Combined Dashboard Section -->
-    <section id="dashboard" class="w-full py-12 sm:py-16 px-4 sm:px-6 relative overflow-hidden bg-gradient-radial from-purple-900/20 to-gray-900">
-        <div class="w-full max-w-[92%] mx-auto h-auto px-4 sm:px-6">
+    <section id="dashboard" class="w-full py-8 sm:py-10 px-4 sm:px-6 relative overflow-hidden bg-gradient-radial from-purple-900/20 to-gray-900">
+        <div class="w-full max-w-[92%] mx-auto h-auto px-2 sm:px-4">
             <div class="w-full flex flex-col">
-                <div class="text-center mb-12 fade-in">
-                    <h2 class="text-4xl md:text-5xl font-bold mb-3 gradient-text">My Journey & Skills</h2>
-                    <p class="text-gray-300 text-lg">Professional path and technical expertise</p>
+                <div class="text-center mb-8 fade-in">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-2 gradient-text">My Journey & Skills</h2>
+                    <p class="text-gray-300 text-sm">Professional path and technical expertise</p>
                 </div>
                 
-                <div class="w-full space-y-8">
+                <div class="w-full space-y-6">
                     <!-- Top Section: Experience and Education in two columns -->
-                    <div class="grid lg:grid-cols-2 gap-8">
+                    <div class="grid lg:grid-cols-2 gap-6">
                         <!-- Experience Column -->
-                        <div class="space-y-8">
-                            <div class="p-6 rounded-3xl bg-gradient-to-br from-gray-900/30 to-gray-800/30 backdrop-blur-lg border border-white/5 shadow-xl h-full">
-                                <h2 class="text-3xl font-bold mb-6 text-white">Experience</h2>
-                                <div class="space-y-6">
+                        <div class="space-y-6">
+                            <div class="p-5 rounded-2xl bg-gradient-to-br from-gray-900/30 to-gray-800/30 backdrop-blur-lg border border-white/5 shadow-xl h-full">
+                                <h4 class="text-base font-bold text-white mb-2">Experience</h4>
+                                <div class="space-y-4">
                                     <!-- Web Developer Intern -->
-                                    <div class="p-6 rounded-2xl bg-gradient-to-br from-purple-500/10 to-purple-700/10 backdrop-blur-lg border border-white/10 hover:border-white/20 hover:shadow-xl hover:shadow-purple-500/20 transition-all duration-500">
-                                        <div class="flex items-start gap-5">
-                                            <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-purple-600/20 to-purple-800/20 flex items-center justify-center">
-                                                <i data-lucide="briefcase" class="w-6 h-6 text-purple-400"></i>
+                                    <div class="p-4 rounded-xl bg-gradient-to-br from-purple-500/10 to-purple-700/10 backdrop-blur-lg border border-white/10 hover:border-white/20 hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-300">
+                                        <div class="flex items-start gap-4">
+                                            <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-to-br from-teal-600/20 to-teal-800/20 flex items-center justify-center">
+                                                <i data-lucide="code" class="w-5 h-5 text-teal-400"></i>
                                             </div>
-                                            <div class="space-y-2 flex-1">
+                                            <div class="space-y-1 flex-1">
                                                 <div class="flex items-center justify-between">
-                                                    <span class="text-purple-300 text-sm font-medium bg-purple-500/10 px-3 py-1 rounded-full">Jul - Aug 2024</span>
+                                                    <span class="text-purple-300 text-xs font-medium bg-purple-500/10 px-2 py-0.5 rounded-full">Jul - Aug 2024</span>
                                                 </div>
-                                                <h3 class="text-xl font-bold text-white">Web Developer Intern</h3>
-                                                <h4 class="text-white/80 font-medium">Arjun Vision Tech</h4>
-                                                <p class="text-white/70 text-base leading-relaxed mt-2">
-                                                    Developed responsive web applications using modern frameworks. 
-                                                    Collaborated with senior developers on client projects and gained hands-on 
-                                                    experience with full-stack development practices.
+                                                <h3 class="text-base font-bold text-white">Web Developer Intern</h3>
+                                                <h4 class="text-white/80 text-sm">Arjun Vision Tech</h4>
+                                                <p class="text-white/60 text-sm leading-relaxed mt-1">
+                                                    Developed responsive web applications using modern frameworks. Collaborated with senior developers on client projects and gained hands-on experience with full-stack development practices.
                                                 </p>
                                             </div>
                                         </div>
                                     </div>
 
                                     <!-- Overall Student Coordinator -->
-                                    <div class="p-6 rounded-2xl bg-gradient-to-br from-purple-500/10 to-purple-700/10 backdrop-blur-lg border border-white/10 hover:border-white/20 hover:shadow-xl hover:shadow-purple-500/20 transition-all duration-500">
-                                        <div class="flex items-start gap-5">
-                                            <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-yellow-500/20 to-orange-500/20 flex items-center justify-center">
-                                                <i data-lucide="award" class="w-6 h-6 text-yellow-400"></i>
+                                    <div class="p-4 rounded-xl bg-gradient-to-br from-purple-500/10 to-purple-700/10 backdrop-blur-lg border border-white/10 hover:border-white/20 hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-300">
+                                        <div class="flex items-start gap-4">
+                                            <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-to-br from-yellow-500/20 to-orange-500/20 flex items-center justify-center">
+                                                <i data-lucide="award" class="w-5 h-5 text-yellow-400"></i>
                                             </div>
-                                            <div class="space-y-2 flex-1">
+                                            <div class="space-y-1 flex-1">
                                                 <div class="flex items-center justify-between">
-                                                    <span class="text-amber-300 text-sm font-medium bg-amber-500/10 px-3 py-1 rounded-full">Nov 2024</span>
+                                                    <span class="text-amber-300 text-xs font-medium bg-amber-500/10 px-2 py-0.5 rounded-full">Nov 2024</span>
                                                 </div>
-                                                <h3 class="text-xl font-bold text-white">Overall Student Coordinator</h3>
-                                                <h4 class="text-white/80 font-medium">Drestein 2024, Saveetha Engineering College</h4>
-                                                <p class="text-white/70 text-base leading-relaxed mt-2">
-                                                    Coordinated national-level technical symposium with 200+ participants from 15+ institutions, 
-                                                    managing 5-member organizing committee, event logistics, and technical paper presentation sessions.
+                                                <h3 class="text-base font-bold text-white">Overall Student Coordinator</h3>
+                                                <h4 class="text-white/80 text-sm">Drestein 2024, Saveetha Engineering College</h4>
+                                                <p class="text-white/60 text-sm leading-relaxed mt-1">
+                                                    Coordinated national-level technical symposium with 200+ participants from 15+ institutions, managing 5-member organizing committee, event logistics, and technical paper presentation sessions.
                                                 </p>
                                             </div>
                                         </div>
@@ -1066,50 +1291,48 @@
 
                         <!-- Education Column -->
                         <div class="space-y-8">
-                            <div class="p-6 rounded-3xl bg-gradient-to-br from-gray-900/30 to-gray-800/30 backdrop-blur-lg border border-white/5 shadow-xl h-full">
-                                <h2 class="text-3xl font-bold mb-6 text-white">Education</h2>
-                                <div class="space-y-4">
+                            <div class="p-5 rounded-2xl bg-gradient-to-br from-gray-900/30 to-gray-800/30 backdrop-blur-lg border border-white/5 shadow-xl h-full">
+                                <h4 class="text-base font-bold text-white mb-2">Education</h4>
+                                <div class="space-y-3">
                                     <!-- B.Tech -->
-                                    <div class="p-6 rounded-2xl bg-gradient-to-br from-purple-500/10 to-purple-700/10 backdrop-blur-lg border border-white/10 hover:border-white/20 hover:shadow-xl hover:shadow-purple-500/20 transition-all duration-500">
-                                        <div class="flex items-start gap-5">
-                                            <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-purple-600/20 to-purple-800/20 flex items-center justify-center">
-                                                <i data-lucide="graduation-cap" class="w-6 h-6 text-purple-400"></i>
+                                    <div class="p-4 rounded-xl bg-gradient-to-br from-purple-500/10 to-purple-700/10 backdrop-blur-lg border border-white/10 hover:border-white/20 hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-300">
+                                        <div class="flex items-start gap-4">
+                                            <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-to-br from-blue-600/20 to-blue-800/20 flex items-center justify-center">
+                                                <i data-lucide="graduation-cap" class="w-5 h-5 text-blue-400"></i>
                                             </div>
-                                            <div class="space-y-2 flex-1">
+                                            <div class="space-y-1 flex-1">
                                                 <div class="flex items-center justify-between">
-                                                    <span class="text-purple-300 text-sm font-medium bg-purple-500/10 px-3 py-1 rounded-full">2021 - 2025</span>
+                                                    <span class="text-purple-300 text-xs font-medium bg-purple-500/10 px-2 py-0.5 rounded-full">2021 - 2025</span>
                                                 </div>
-                                                <h3 class="text-xl font-bold text-white">B.Tech in Information Technology</h3>
-                                                <h4 class="text-white/80 font-medium">Saveetha Engineering College, Chennai</h4>
-                                                <p class="text-white/70 text-base leading-relaxed mt-2">
-                                                    Pursuing Bachelor of Technology with a focus on software development, data structures, and algorithms.
-                                                    Actively participating in coding competitions and technical events.
+                                                <h3 class="text-base font-bold text-white">B.Tech in Information Technology</h3>
+                                                <h4 class="text-white/80 text-sm">Saveetha School of Engineering, Chennai</h4>
+                                                <p class="text-white/60 text-sm leading-relaxed mt-1">
+                                                    Pursuing Bachelor of Technology with a focus on software development, data structures, and algorithms. Actively participating in coding competitions and technical events.
                                                 </p>
-                                                <div class="pt-2">
-                                                    <span class="inline-block bg-purple-500/10 text-purple-300 text-sm px-3 py-1 rounded-full">CGPA: 8.7/10.0</span>
+                                                <div class="pt-1">
+                                                    <span class="inline-block bg-purple-500/10 text-purple-300 text-xs px-2 py-0.5 rounded-full">CGPA: 8.37/10.0</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
                                     <!-- HSC -->
-                                    <div class="p-6 rounded-2xl bg-gradient-to-br from-purple-500/10 to-purple-700/10 backdrop-blur-lg border border-white/10 hover:border-white/20 hover:shadow-xl hover:shadow-purple-500/20 transition-all duration-500">
-                                        <div class="flex items-start gap-5">
-                                            <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-purple-600/20 to-purple-800/20 flex items-center justify-center">
-                                                <i data-lucide="book-open" class="w-6 h-6 text-purple-400"></i>
+                                    <div class="p-4 rounded-xl bg-gradient-to-br from-purple-500/10 to-purple-700/10 backdrop-blur-lg border border-white/10 hover:border-white/20 hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-300">
+                                        <div class="flex items-start gap-4">
+                                            <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-to-br from-green-600/20 to-green-800/20 flex items-center justify-center">
+                                                <i data-lucide="book-open" class="w-5 h-5 text-green-400"></i>
                                             </div>
-                                            <div class="space-y-2 flex-1">
+                                            <div class="space-y-1 flex-1">
                                                 <div class="flex items-center justify-between">
-                                                    <span class="text-purple-300 text-sm font-medium bg-purple-500/10 px-3 py-1 rounded-full">2020 - 2021</span>
+                                                    <span class="text-purple-300 text-xs font-medium bg-purple-500/10 px-2 py-0.5 rounded-full">2020 - 2021</span>
                                                 </div>
-                                                <h3 class="text-xl font-bold text-white">Higher Secondary (12th Grade)</h3>
-                                                <h4 class="text-white/80 font-medium">AKT Academy Matriculation HSS, Chennai</h4>
-                                                <p class="text-white/70 text-base leading-relaxed mt-2">
-                                                    Completed 12th standard with Computer Science as major subject.
-                                                    Developed strong foundation in programming and problem-solving.
+                                                <h3 class="text-base font-bold text-white">Higher Secondary (12th Grade)</h3>
+                                                <h4 class="text-white/80 text-sm">Chennai Higher Secondary School, Velachery</h4>
+                                                <p class="text-white/60 text-sm leading-relaxed mt-1">
+                                                    Completed 12th standard with Biology as major subject. Developed strong analytical and problem-solving skills.
                                                 </p>
-                                                <div class="pt-2">
-                                                    <span class="inline-block bg-purple-500/10 text-purple-300 text-sm px-3 py-1 rounded-full">Percentage: 95.5%</span>
+                                                <div class="pt-1">
+                                                    <span class="inline-block bg-purple-500/10 text-purple-300 text-xs px-2 py-0.5 rounded-full">Percentage: 81%</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -1118,21 +1341,20 @@
                                     <!-- SSLC -->
                                     <div class="p-6 rounded-2xl bg-gradient-to-br from-purple-500/10 to-purple-700/10 backdrop-blur-lg border border-white/10 hover:border-white/20 hover:shadow-xl hover:shadow-purple-500/20 transition-all duration-500">
                                         <div class="flex items-start gap-5">
-                                            <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-purple-600/20 to-purple-800/20 flex items-center justify-center">
-                                                <i data-lucide="award" class="w-6 h-6 text-purple-400"></i>
+                                            <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-yellow-600/20 to-yellow-800/20 flex items-center justify-center">
+                                                <i data-lucide="award" class="w-6 h-6 text-yellow-400"></i>
                                             </div>
                                             <div class="space-y-2 flex-1">
                                                 <div class="flex items-center justify-between">
                                                     <span class="text-purple-300 text-sm font-medium bg-purple-500/10 px-3 py-1 rounded-full">2018 - 2019</span>
                                                 </div>
-                                                <h3 class="text-xl font-bold text-white">Secondary School (10th Grade)</h3>
-                                                <h4 class="text-white/80 font-medium">AKT Academy Matriculation HSS, Chennai</h4>
-                                                <p class="text-white/70 text-base leading-relaxed mt-2">
-                                                    Completed 10th standard with distinction.
-                                                    Developed strong fundamentals in mathematics and science.
+                                                <h3 class="text-base font-bold text-white">Secondary School (10th Grade)</h3>
+                                                <h4 class="text-white/80 text-sm">Chennai Higher Secondary School, Velachery</h4>
+                                                <p class="text-white/60 text-sm leading-relaxed mt-1">
+                                                    Completed 10th standard with distinction. Developed strong fundamentals in mathematics and science.
                                                 </p>
                                                 <div class="pt-2">
-                                                    <span class="inline-block bg-purple-500/10 text-purple-300 text-sm px-3 py-1 rounded-full">Percentage: 86.4%</span>
+                                                    <span class="inline-block bg-purple-500/10 text-purple-300 text-sm px-3 py-1 rounded-full">Percentage: 87%</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -1143,25 +1365,26 @@
                     </div>
 
                     <!-- Skills Section -->
-                    <div class="p-6 rounded-3xl bg-gradient-to-br from-gray-900/30 to-gray-800/30 backdrop-blur-lg border border-white/5 shadow-xl">
-                        <h2 class="text-3xl font-bold mb-6 text-white">Skills</h2>
-                        <div class="space-y-8">
+                    <div class="p-5 rounded-2xl bg-gradient-to-br from-gray-900/30 to-gray-800/30 backdrop-blur-lg border border-white/5 shadow-xl">
+                        <h2 class="text-2xl font-bold mb-4 text-white">Skills</h2>
+                        <div class="space-y-6">
                             <!-- Programming Languages -->
                             <div class="fade-in">
-                                <h3 class="text-xl font-semibold mb-4 text-white flex items-center gap-2">
-                                    <i data-lucide="code" class="w-6 h-6 text-purple-400"></i>
+                                <h3 class="text-base font-semibold mb-2 text-white flex items-center gap-2">
+                                    <i data-lucide="code" class="w-4 h-4 text-purple-400"></i>
                                     Programming Languages
                                 </h3>
-                                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
-                                    <div class="p-3 rounded-xl bg-gradient-to-br from-purple-500/5 to-purple-700/5 backdrop-blur-lg border border-white/5 hover:border-white/10 hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-300">
-                                        <div class="flex items-center gap-2">
-                                            <i data-lucide="code-2" class="w-5 h-5 text-purple-400"></i>
-                                            <span>Java</span>
+                                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2">
+                                    <div class="p-2 rounded-lg bg-gradient-to-br from-purple-500/5 to-purple-700/5 backdrop-blur-lg border border-white/5 hover:border-white/10 hover:shadow-lg hover:shadow-purple-500/10 transition-all duration-200">
+                                        <div class="flex items-center gap-1.5">
+                                            <i data-lucide="code-2" class="w-4 h-4 text-purple-400"></i>
+                                            <span class="text-sm">Java</span>
                                         </div>
                                     </div>
-                                    <div class="p-3 rounded-xl bg-gradient-to-br from-purple-500/5 to-purple-700/5 backdrop-blur-lg border border-white/5 hover:border-white/10 hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-300">
-                                        <div class="flex items-center gap-2">
-                                            <i data-lucide="code-2" class="w-5 h-5 text-purple-400"></i>
+                                    <div class="p-2 rounded-lg bg-gradient-to-br from-purple-500/5 to-purple-700/5 backdrop-blur-lg border border-white/5 hover:border-white/10 hover:shadow-lg hover:shadow-purple-500/10 transition-all duration-200">
+                                        <div class="flex items-center gap-1.5">
+                                            <i data-lucide="code-2" class="w-4 h-4 text-purple-400"></i>
+                                            <span class="text-sm">Python</span>
                                             <span>Python</span>
                                         </div>
                                     </div>
@@ -1181,9 +1404,9 @@
                             </div>
 
                             <!-- Web Technologies -->
-                            <div class="fade-in mt-6">
-                                <h3 class="text-lg font-semibold mb-3 text-white flex items-center gap-2">
-                                    <i data-lucide="globe" class="w-5 h-5 text-blue-400"></i>
+                            <div class="fade-in mt-4">
+                                <h3 class="text-base font-semibold mb-2 text-white flex items-center gap-2">
+                                    <i data-lucide="globe" class="w-4 h-4 text-blue-400"></i>
                                     Web Technologies
                                 </h3>
                                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
@@ -1233,9 +1456,9 @@
                             </div>
 
                             <!-- Other Skills -->
-                            <div class="fade-in mt-6">
-                                <h3 class="text-lg font-semibold mb-3 text-white flex items-center gap-2">
-                                    <i data-lucide="star" class="w-5 h-5 text-yellow-400"></i>
+                            <div class="fade-in mt-4">
+                                <h3 class="text-base font-semibold mb-2 text-white flex items-center gap-2">
+                                    <i data-lucide="star" class="w-4 h-4 text-yellow-400"></i>
                                     Other Skills
                                 </h3>
                                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
@@ -1261,9 +1484,9 @@
                             </div>
 
                             <!-- Development Tools -->
-                            <div class="fade-in mt-6">
-                                <h3 class="text-lg font-semibold mb-3 text-white flex items-center gap-2">
-                                    <i data-lucide="wrench" class="w-5 h-5 text-red-400"></i>
+                            <div class="fade-in mt-4">
+                                <h3 class="text-base font-semibold mb-2 text-white flex items-center gap-2">
+                                    <i data-lucide="wrench" class="w-4 h-4 text-red-400"></i>
                                     Development Tools
                                 </h3>
                                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
